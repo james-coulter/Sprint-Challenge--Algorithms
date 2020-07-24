@@ -96,8 +96,31 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+
+        # Used Recursive Bubble Sort
+        # Worst case is O(n^2) 😫
+        # Check to see if we can move right, if not return list
+        if self.can_move_right() is False:
+            return self._list
+
+        self.swap_item()
+        # If you can move right do it
+        while self.can_move_right() is True:
+            self.move_right()
+
+            # Swap item when held item is greater
+            if self.compare_item() == 1:
+                self.swap_item()
+
+        while self.can_move_left() is True:
+            self.move_left()
+
+            # If robot ends up with nothing, break
+            if self.compare_item() == None:
+                self.swap_item()
+                break
+        self.move_right()
+        self.sort()
 
 
 if __name__ == "__main__":
